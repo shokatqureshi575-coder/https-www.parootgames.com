@@ -1,21 +1,480 @@
-MIT License
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fighter.wall.com — Gaming Wallpapers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-Copyright (c) 2026 shokatqureshi575-coder
+<!-- ===== Animated RGB background glow ===== -->
+<div class="rgb-bg"></div>
+<div class="grid-overlay"></div>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+<!-- ===== Header ===== -->
+<header class="navbar">
+  <div class="logo">
+    <span class="logo-icon">⚔</span>
+    <span class="logo-text">fighter<span class="accent">.wall</span></span>
+  </div>
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+  <nav class="nav-links">
+    <a href="#latest" class="active">Latest</a>
+    <a href="#trending">Trending</a>
+    <a href="#categories">Categories</a>
+    <a href="#upload">Upload</a>
+  </nav>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+  <div class="search-wrap">
+    <input type="text" placeholder="Search wallpapers...">
+    <button class="search-btn">🔍</button>
+  </div>
+
+  <button class="upload-btn">+ Upload</button>
+</header>
+
+<!-- ===== Hero/Banner ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <h1><span class="glow-text">FIGHTER</span> Wallpapers</h1>
+    <p class="hero-sub">The best gaming & fighter wallpapers on the Net!</p>
+    <div class="search-banner">
+      <input type="text" placeholder="Search...">
+      <button>🔍</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Filter Tabs ===== -->
+<section class="filter-section">
+  <div class="filter-tabs">
+    <button class="tab active">Latest</button>
+    <button class="tab">Trending</button>
+    <button class="tab">Random</button>
+    <button class="tab">Most Downloaded</button>
+    <button class="tab">Forums</button>
+  </div>
+</section>
+
+<!-- ===== Wallpaper Grid ===== -->
+<section id="latest" class="wallpaper-section">
+  <div class="wallpaper-grid">
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-1"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 2.4k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-2"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">8K</span>
+          <span class="res">7680×4320</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 3.1k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-3"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.8k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-4"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 980</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-5"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">DUAL</span>
+          <span class="res">5120×1440</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.3k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-6"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 4.6k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-7"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">8K</span>
+          <span class="res">7680×4320</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 2.0k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-8"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.1k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="load-more-wrap">
+    <button class="btn-outline">Load More Wallpapers</button>
+  </div>
+</section>
+
+<!-- ===== Announcements ===== -->
+<section class="announcements">
+  <h2>Announcements</h2>
+  <div class="announcement-cards">
+    <div class="announcement">
+      <p>🔥 <strong>New Fighter Series Added:</strong> 50+ New wallpapers from latest games!</p>
+    </div>
+    <div class="announcement">
+      <p>📱 <strong>Mobile Optimized:</strong> Download wallpapers in perfect resolution for your device!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats Section ===== -->
+<section class="stats-section">
+  <div class="stats-box">
+    <h3>fighter.wall.com stats</h3>
+    <div class="stats">
+      <div class="stat">
+        <strong>1,850+</strong>
+        <p>High Quality Wallpapers</p>
+      </div>
+      <div class="stat">
+        <strong>425K+</strong>
+        <p>Total Downloads</p>
+      </div>
+      <div class="stat">
+        <strong>12.5K+</strong>
+        <p>Active Users</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <div class="logo">
+        <span class="logo-icon">⚔</span>
+        <span class="logo-text">fighter<span class="accent">.wall</span></span>
+      </div>
+      <p>Best gaming & fighter wallpapers for your setup.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">DMCA</a>
+    </div>
+  </div>
+  <p class="copyright">© 2026 fighter.wall.com. All wallpapers belong to their respective creators.</p>
+</footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fighter.wall.com — Gaming Wallpapers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Animated RGB background glow ===== -->
+<div class="rgb-bg"></div>
+<div class="grid-overlay"></div>
+
+<!-- ===== Header ===== -->
+<header class="navbar">
+  <div class="logo">
+    <span class="logo-icon">⚔</span>
+    <span class="logo-text">fighter<span class="accent">.wall</span></span>
+  </div>
+
+  <nav class="nav-links">
+    <a href="#latest" class="active">Latest</a>
+    <a href="#trending">Trending</a>
+    <a href="#categories">Categories</a>
+    <a href="#upload">Upload</a>
+  </nav>
+
+  <div class="search-wrap">
+    <input type="text" placeholder="Search wallpapers...">
+    <button class="search-btn">🔍</button>
+  </div>
+
+  <button class="upload-btn">+ Upload</button>
+</header>
+
+<!-- ===== Hero/Banner ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <h1><span class="glow-text">FIGHTER</span> Wallpapers</h1>
+    <p class="hero-sub">The best gaming & fighter wallpapers on the Net!</p>
+    <div class="search-banner">
+      <input type="text" placeholder="Search...">
+      <button>🔍</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Filter Tabs ===== -->
+<section class="filter-section">
+  <div class="filter-tabs">
+    <button class="tab active">Latest</button>
+    <button class="tab">Trending</button>
+    <button class="tab">Random</button>
+    <button class="tab">Most Downloaded</button>
+    <button class="tab">Forums</button>
+  </div>
+</section>
+
+<!-- ===== Wallpaper Grid ===== -->
+<section id="latest" class="wallpaper-section">
+  <div class="wallpaper-grid">
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-1"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 2.4k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-2"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">8K</span>
+          <span class="res">7680×4320</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 3.1k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-3"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.8k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-4"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 980</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-5"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">DUAL</span>
+          <span class="res">5120×1440</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.3k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-6"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 4.6k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-7"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">8K</span>
+          <span class="res">7680×4320</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 2.0k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wallpaper-card">
+      <div class="thumb thumb-8"></div>
+      <div class="card-overlay">
+        <div class="card-info">
+          <span class="badge">4K</span>
+          <span class="res">3840×2160</span>
+        </div>
+        <div class="card-actions">
+          <button class="icon-btn">♡ 1.1k</button>
+          <button class="icon-btn download">⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="load-more-wrap">
+    <button class="btn-outline">Load More Wallpapers</button>
+  </div>
+</section>
+
+<!-- ===== Announcements ===== -->
+<section class="announcements">
+  <h2>Announcements</h2>
+  <div class="announcement-cards">
+    <div class="announcement">
+      <p>🔥 <strong>New Fighter Series Added:</strong> 50+ New wallpapers from latest games!</p>
+    </div>
+    <div class="announcement">
+      <p>📱 <strong>Mobile Optimized:</strong> Download wallpapers in perfect resolution for your device!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats Section ===== -->
+<section class="stats-section">
+  <div class="stats-box">
+    <h3>fighter.wall.com stats</h3>
+    <div class="stats">
+      <div class="stat">
+        <strong>1,850+</strong>
+        <p>High Quality Wallpapers</p>
+      </div>
+      <div class="stat">
+        <strong>425K+</strong>
+        <p>Total Downloads</p>
+      </div>
+      <div class="stat">
+        <strong>12.5K+</strong>
+        <p>Active Users</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <div class="logo">
+        <span class="logo-icon">⚔</span>
+        <span class="logo-text">fighter<span class="accent">.wall</span></span>
+      </div>
+      <p>Best gaming & fighter wallpapers for your setup.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">DMCA</a>
+    </div>
+  </div>
+  <p class="copyright">© 2026 fighter.wall.com. All wallpapers belong to their respective creators.</p>
+</footer>
+
+</body>
+</html>
