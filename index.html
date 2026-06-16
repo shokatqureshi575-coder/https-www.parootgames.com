@@ -1,241 +1,486 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>fighter.wall.com — Gaming Wallpapers</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fighter Player - Parrot Game</title>
+    <style>
+        /* CSS for Professional UI and Basic 2D Graphics */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            user-select: none;
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 800px;
+            max-width: 100%;
+            height: 450px;
+            background: #87CEEB; /* Sky background */
+            border: 4px solid #0f3460;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        /* Screens */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(26, 26, 46, 0.9);
+            z-index: 10;
+        }
+
+        /* Lightning Text Animation */
+        .lightning-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: lightning 1.5s infinite alternate;
+        }
+
+        @keyframes lightning {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff; }
+            20% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #0ff, 0 0 20px #0ff; }
+            40% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 30px #0ff, 0 0 60px #0ff; }
+            60% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #0ff; }
+            80% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff; }
+            100% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 15px #0ff; }
+        }
+
+        /* Animated Buttons */
+        .btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #e94560, #ff6b81);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+            margin: 10px;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        #start-btn {
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4); }
+            100% { transform: scale(1.1); box-shadow: 0 5px 25px rgba(233, 69, 96, 0.8); }
+        }
+
+        .skin-btn {
+            background: linear-gradient(45deg, #0f3460, #16213e);
+            font-size: 16px;
+            padding: 10px 25px;
+        }
+
+        /* In-Game UI */
+        #hud {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 5;
+            display: none;
+            width: 90%;
+            justify-content: space-between;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: none;
+            justify-content: space-around;
+            z-index: 5;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
 </head>
 <body>
 
-<!-- ===== Animated RGB background glow ===== -->
-<div class="rgb-bg"></div>
-<div class="grid-overlay"></div>
-
-<!-- ===== Header ===== -->
-<header class="navbar">
-  <div class="logo">
-    <span class="logo-icon">⚔</span>
-    <span class="logo-text">fighter<span class="accent">.wall</span></span>
-  </div>
-
-  <nav class="nav-links">
-    <a href="#latest" class="active">Latest</a>
-    <a href="#trending">Trending</a>
-    <a href="#categories">Categories</a>
-    <a href="#upload">Upload</a>
-  </nav>
-
-  <div class="search-wrap">
-    <input type="text" placeholder="Search wallpapers...">
-    <button class="search-btn">🔍</button>
-  </div>
-
-  <button class="upload-btn">+ Upload</button>
-</header>
-
-<!-- ===== Hero/Banner ===== -->
-<section class="hero">
-  <div class="hero-content">
-    <h1><span class="glow-text">FIGHTER</span> Wallpapers</h1>
-    <p class="hero-sub">The best gaming & fighter wallpapers on the Net!</p>
-    <div class="search-banner">
-      <input type="text" placeholder="Search...">
-      <button>🔍</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Filter Tabs ===== -->
-<section class="filter-section">
-  <div class="filter-tabs">
-    <button class="tab active">Latest</button>
-    <button class="tab">Trending</button>
-    <button class="tab">Random</button>
-    <button class="tab">Most Downloaded</button>
-    <button class="tab">Forums</button>
-  </div>
-</section>
-
-<!-- ===== Wallpaper Grid ===== -->
-<section id="latest" class="wallpaper-section">
-  <div class="wallpaper-grid">
-
-    <div class="wallpaper-card">
-      <div class="thumb thumb-1"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">4K</span>
-          <span class="res">3840×2160</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 2.4k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
+<div id="game-wrapper">
+    <div id="hud">
+        <span id="score-display">Score: 0</span>
+        <span id="coin-display">🪙: 0</span>
     </div>
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-2"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">8K</span>
-          <span class="res">7680×4320</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 3.1k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+
+    <div id="controls">
+        <button class="control-btn" id="move-btn">Move Forward ➡️</button>
+        <button class="control-btn" id="jump-btn">Jump ⬆️</button>
     </div>
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-3"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">4K</span>
-          <span class="res">3840×2160</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 1.8k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
+    <div id="start-screen" class="screen">
+        <h1 class="lightning-text">Fighter Player</h1>
+        <button id="start-btn" class="btn">START GAME</button>
+        <button id="skin-btn-start" class="btn skin-btn">Change Parrot Skin</button>
     </div>
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-4"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">4K</span>
-          <span class="res">3840×2160</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 980</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
+    <div id="game-over-screen" class="screen" style="display: none;">
+        <h1 class="lightning-text" style="color: #ff4757; text-shadow: 0 0 10px #ff4757;">GAME OVER</h1>
+        <h2 id="final-stats" style="color: white; margin-bottom: 20px;"></h2>
+        <button id="retry-btn" class="btn">TRY AGAIN</button>
+        <button id="skin-btn-retry" class="btn skin-btn">Change Parrot Skin</button>
     </div>
+</div>
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-5"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">DUAL</span>
-          <span class="res">5120×1440</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 1.3k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
-    </div>
+<script>
+    // Canvas & Context
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-6"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">4K</span>
-          <span class="res">3840×2160</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 4.6k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
-    </div>
+    // UI Elements
+    const startScreen = document.getElementById('start-screen');
+    const gameOverScreen = document.getElementById('game-over-screen');
+    const hud = document.getElementById('hud');
+    const controls = document.getElementById('controls');
+    
+    // Buttons
+    const startBtn = document.getElementById('start-btn');
+    const retryBtn = document.getElementById('retry-btn');
+    const moveBtn = document.getElementById('move-btn');
+    const jumpBtn = document.getElementById('jump-btn');
+    const skinBtns = document.querySelectorAll('.skin-btn');
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-7"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">8K</span>
-          <span class="res">7680×4320</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 2.0k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
-    </div>
+    // Displays
+    const scoreDisplay = document.getElementById('score-display');
+    const coinDisplay = document.getElementById('coin-display');
+    const finalStats = document.getElementById('final-stats');
 
-    <div class="wallpaper-card">
-      <div class="thumb thumb-8"></div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <span class="badge">4K</span>
-          <span class="res">3840×2160</span>
-        </div>
-        <div class="card-actions">
-          <button class="icon-btn">♡ 1.1k</button>
-          <button class="icon-btn download">⬇ Download</button>
-        </div>
-      </div>
-    </div>
+    // Game Variables
+    let isPlaying = false;
+    let animationId;
+    let score = 0;
+    let coinsCollected = 0;
+    let isMoving = false;
+    let baseSpeed = 5;
 
-  </div>
+    // Parrot Skins (Colors)
+    const skins = ['#2ecc71', '#e74c3c', '#3498db', '#f1c40f', '#9b59b6']; // Green, Red, Blue, Yellow, Purple
+    let currentSkinIndex = 0;
 
-  <div class="load-more-wrap">
-    <button class="btn-outline">Load More Wallpapers</button>
-  </div>
-</section>
+    // Entities
+    const parrot = {
+        x: 100,
+        y: 300,
+        radius: 15,
+        velocityY: 0,
+        gravity: 0.6,
+        jumpPower: -10,
+        onGround: false
+    };
 
-<!-- ===== Announcements ===== -->
-<section class="announcements">
-  <h2>Announcements</h2>
-  <div class="announcement-cards">
-    <div class="announcement">
-      <p>🔥 <strong>New Fighter Series Added:</strong> 50+ New wallpapers from latest games!</p>
-    </div>
-    <div class="announcement">
-      <p>📱 <strong>Mobile Optimized:</strong> Download wallpapers in perfect resolution for your device!</p>
-    </div>
-  </div>
-</section>
+    let obstacles = [];
+    let coins = [];
+    const groundY = 380;
 
-<!-- ===== Stats Section ===== -->
-<section class="stats-section">
-  <div class="stats-box">
-    <h3>fighter.wall.com stats</h3>
-    <div class="stats">
-      <div class="stat">
-        <strong>1,850+</strong>
-        <p>High Quality Wallpapers</p>
-      </div>
-      <div class="stat">
-        <strong>425K+</strong>
-        <p>Total Downloads</p>
-      </div>
-      <div class="stat">
-        <strong>12.5K+</strong>
-        <p>Active Users</p>
-      </div>
-    </div>
-  </div>
-</section>
+    // --- Game Logic ---
 
-<!-- ===== Footer ===== -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-left">
-      <div class="logo">
-        <span class="logo-icon">⚔</span>
-        <span class="logo-text">fighter<span class="accent">.wall</span></span>
-      </div>
-      <p>Best gaming & fighter wallpapers for your setup.</p>
-    </div>
-    <div class="footer-links">
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">DMCA</a>
-    </div>
-  </div>
-  <p class="copyright">© 2026 fighter.wall.com. All wallpapers belong to their respective creators.</p>
-</footer>
+    function resetGame() {
+        parrot.y = groundY - parrot.radius;
+        parrot.velocityY = 0;
+        obstacles = [];
+        coins = [];
+        score = 0;
+        coinsCollected = 0;
+        isMoving = false;
+        updateHUD();
+    }
 
-<script src="script.js"></script>
+    function spawnObstacle() {
+        if (Math.random() < 0.02) { 
+            let width = 30 + Math.random() * 20;
+            let height = 30 + Math.random() * 30;
+            obstacles.push({
+                x: canvas.width + 50,
+                y: groundY - height,
+                width: width,
+                height: height
+            });
+        }
+    }
+
+    function spawnCoin() {
+        if (Math.random() < 0.03) {
+            coins.push({
+                x: canvas.width + 50,
+                y: groundY - 50 - Math.random() * 100, // Varying heights
+                radius: 10
+            });
+        }
+    }
+
+    // --- Drawing Functions ---
+
+    function drawGround() {
+        ctx.fillStyle = '#27ae60'; // Grass color
+        ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+        ctx.fillStyle = '#8B4513'; // Dirt color
+        ctx.fillRect(0, groundY + 20, canvas.width, canvas.height - groundY - 20);
+    }
+
+    function drawParrot() {
+        const pX = parrot.x;
+        const pY = parrot.y;
+        
+        // Body
+        ctx.fillStyle = skins[currentSkinIndex];
+        ctx.beginPath();
+        ctx.arc(pX, pY, parrot.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Beak
+        ctx.fillStyle = "#e67e22";
+        ctx.beginPath();
+        ctx.moveTo(pX + 10, pY - 5);
+        ctx.lineTo(pX + 25, pY);
+        ctx.lineTo(pX + 10, pY + 5);
+        ctx.fill();
+
+        // Eye
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(pX + 5, pY - 5, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(pX + 6, pY - 5, 2, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Wing
+        ctx.fillStyle = "rgba(0,0,0,0.2)";
+        ctx.beginPath();
+        ctx.ellipse(pX - 5, pY + 2, 8, 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawObstacles() {
+        ctx.fillStyle = '#c0392b'; // Danger red
+        obstacles.forEach(obs => {
+            // Draw a basic spike/box
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            // Warning stripes
+            ctx.fillStyle = '#000';
+            ctx.fillRect(obs.x, obs.y, obs.width, 5);
+            ctx.fillStyle = '#c0392b';
+        });
+    }
+
+    function drawCoins() {
+        coins.forEach(coin => {
+            ctx.fillStyle = '#f1c40f'; // Gold
+            ctx.beginPath();
+            ctx.arc(coin.x, coin.y, coin.radius, 0, Math.PI * 2);
+            ctx.fill();
+            // Inner circle
+            ctx.fillStyle = '#f39c12';
+            ctx.beginPath();
+            ctx.arc(coin.x, coin.y, coin.radius - 3, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    }
+
+    // --- Physics & Updates ---
+
+    function updateHUD() {
+        scoreDisplay.innerText = `Score: ${Math.floor(score)}`;
+        coinDisplay.innerText = `🪙: ${coinsCollected}`;
+    }
+
+    function gameOver() {
+        isPlaying = false;
+        cancelAnimationFrame(animationId);
+        hud.style.display = 'none';
+        controls.style.display = 'none';
+        gameOverScreen.style.display = 'flex';
+        finalStats.innerText = `Score: ${Math.floor(score)} | Coins: ${coinsCollected}`;
+    }
+
+    function update() {
+        if (!isPlaying) return;
+
+        // Clear Canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Environment
+        drawGround();
+
+        // Parrot Physics (Gravity)
+        parrot.velocityY += parrot.gravity;
+        parrot.y += parrot.velocityY;
+
+        // Ground Collision
+        if (parrot.y + parrot.radius >= groundY) {
+            parrot.y = groundY - parrot.radius;
+            parrot.velocityY = 0;
+            parrot.onGround = true;
+        } else {
+            parrot.onGround = false;
+        }
+
+        // Movement Logic (Only scroll if Move button is held)
+        if (isMoving) {
+            score += 0.1;
+            spawnObstacle();
+            spawnCoin();
+            
+            // Move obstacles & coins left
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].x -= baseSpeed;
+            }
+            for (let i = 0; i < coins.length; i++) {
+                coins[i].x -= baseSpeed;
+            }
+        }
+
+        // Clean up off-screen items
+        obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+        coins = coins.filter(coin => coin.x + coin.radius > 0);
+
+        // Draw Entities
+        drawObstacles();
+        drawCoins();
+        drawParrot();
+
+        // Collision Detection - Obstacles
+        for (let i = 0; i < obstacles.length; i++) {
+            let obs = obstacles[i];
+            // Simple AABB Collision mapping circle to box roughly
+            if (parrot.x + parrot.radius - 5 > obs.x && 
+                parrot.x - parrot.radius + 5 < obs.x + obs.width &&
+                parrot.y + parrot.radius - 5 > obs.y && 
+                parrot.y - parrot.radius + 5 < obs.y + obs.height) {
+                gameOver();
+                return;
+            }
+        }
+
+        // Collision Detection - Coins
+        for (let i = 0; i < coins.length; i++) {
+            let coin = coins[i];
+            let dx = parrot.x - coin.x;
+            let dy = parrot.y - coin.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < parrot.radius + coin.radius) {
+                coinsCollected++;
+                score += 10;
+                coins.splice(i, 1); // Remove coin
+                i--;
+            }
+        }
+
+        if (isMoving) updateHUD();
+
+        animationId = requestAnimationFrame(update);
+    }
+
+    // --- Input Listeners ---
+
+    // Jump
+    function handleJump() {
+        if (parrot.onGround && isPlaying) {
+            parrot.velocityY = parrot.jumpPower;
+            parrot.onGround = false;
+        }
+    }
+    
+    jumpBtn.addEventListener('mousedown', handleJump);
+    jumpBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleJump(); });
+
+    // Keyboard support for PC testing
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' || e.code === 'ArrowUp') handleJump();
+        if (e.code === 'ArrowRight') isMoving = true;
+    });
+    document.addEventListener('keyup', (e) => {
+        if (e.code === 'ArrowRight') isMoving = false;
+    });
+
+    // Move (Chalane ke liye)
+    const startMoving = (e) => { e.preventDefault(); isMoving = true; };
+    const stopMoving = (e) => { e.preventDefault(); isMoving = false; };
+
+    moveBtn.addEventListener('mousedown', startMoving);
+    moveBtn.addEventListener('mouseup', stopMoving);
+    moveBtn.addEventListener('mouseleave', stopMoving);
+    
+    moveBtn.addEventListener('touchstart', startMoving);
+    moveBtn.addEventListener('touchend', stopMoving);
+
+    // Change Skin
+    skinBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentSkinIndex = (currentSkinIndex + 1) % skins.length;
+            btn.style.borderColor = skins[currentSkinIndex];
+        });
+    });
+
+    // Start / Retry Game
+    function startGame() {
+        startScreen.style.display = 'none';
+        gameOverScreen.style.display = 'none';
+        hud.style.display = 'flex';
+        controls.style.display = 'flex';
+        resetGame();
+        isPlaying = true;
+        update();
+    }
+
+    startBtn.addEventListener('click', startGame);
+    retryBtn.addEventListener('click', startGame);
+
+</script>
 </body>
 </html>
